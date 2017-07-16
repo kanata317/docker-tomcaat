@@ -1,0 +1,23 @@
+version: '2'
+services:
+  nginx:
+    image: 'nginx'
+    ports:
+    - '80:80'
+    volumes:
+    - /home/kanata/work/docker/tomcat/nginx.dev.conf:/etc/nginx/nginx.conf
+    links:
+    - "app1:application1"
+    - "app2:application2"
+  app1:
+    image: 'tomcat:latest'
+    ports:
+    - '8080:8080'
+    volumes:
+    - /home/kanata/work/docker/tomcat/:/usr/local/tomcat/webapps/
+  app2:
+    image: 'tomcat:latest'
+    ports:
+    - '8081:8080'
+    volumes:
+    - /home/kanata/work/docker/tomcat/:/usr/local/tomcat/webapps/
